@@ -111,3 +111,6 @@ the upgrade.
 
 * Other configs/examples to process
 ** https://github.com/angrybacon/dotemacs
+** http://pages.sachachua.com/.emacs.d/Sacha.html
+** http://mescal.imag.fr/membres/arnaud.legrand/misc/init.php
+** https://github.com/larstvei/dot-emacs
