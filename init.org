@@ -1,8 +1,6 @@
 : Emacs Config
 
-
-* Package system
-** Initialization
+* Package system** Initialization
    #+BEGIN_SRC emacs-lisp :tangle yes
      (require 'package)
      (setq package-archives
@@ -103,4 +101,13 @@
 	(lambda() (interactive)(org-babel-load-file "~/.emacs.d/init.org")))
   #+END_SRC
 
-* blah
+* Instuctions
+** Upgrade packages
+
+Within Emacs, list all packages `M-x list-packages`. It will refresh the repos.
+
+Pres `U` to mark all upgradable packages to be upgrade. Then press `x` to perform
+the upgrade.
+
+* Other configs/examples to process
+** https://github.com/angrybacon/dotemacs
