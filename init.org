@@ -118,3 +118,4 @@ the upgrade.
 ** http://pages.sachachua.com/.emacs.d/Sacha.html
 ** http://mescal.imag.fr/membres/arnaud.legrand/misc/init.php
 ** https://github.com/larstvei/dot-emacs
+** https://jamiecollinson.com/blog/my-emacs-config/
