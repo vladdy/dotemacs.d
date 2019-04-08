@@ -86,6 +86,9 @@
 (global-set-key (kbd "C-c i") 
 (lambda() (interactive)(org-babel-load-file "~/.emacs.d/init.org")))
 
+(global-set-key (kbd "M-o") 'other-window)
+(windmove-default-keybindings)
+
 (ido-mode t)
 (setq ido-enable-flex-matching t)
 

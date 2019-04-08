@@ -103,6 +103,13 @@
 
 
 * General
+** Settings
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+(global-set-key (kbd "M-o") 'other-window)
+(windmove-default-keybindings)
+#+END_SRC
+
 ** Ido
 
 #+BEGIN_SRC emacs-lisp :tangle yes
