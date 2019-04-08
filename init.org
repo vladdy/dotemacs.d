@@ -101,6 +101,28 @@
 	(lambda() (interactive)(org-babel-load-file "~/.emacs.d/init.org")))
   #+END_SRC
 
+* Coding
+
+** Python
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (use-package anaconda-mode
+    :config
+    (add-hook 'python-mode-hook 'anaconda-mode)
+    (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
+  )
+
+  (use-package conda
+    :ensure t
+    :init
+    (setq conda-anaconda-home (expand-file-name "~/anaconda3"))
+    :config
+    (conda-env-initialize-interactive-shells)
+    (conda-env-initialize-eshell)
+    (conda-env-autoactivate-mode t)
+  )
+#+END_SRC
+
 * Instuctions
 ** Regenerate and load config
 

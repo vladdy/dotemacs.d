@@ -85,3 +85,33 @@
 
 (global-set-key (kbd "C-c i") 
 (lambda() (interactive)(org-babel-load-file "~/.emacs.d/init.org")))
+
+(use-package anaconda-mode
+  :config
+  (add-hook 'python-mode-hook 'anaconda-mode)
+  (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
+)
+
+(use-package conda
+  :ensure t
+  :init
+  (setq conda-anaconda-home (expand-file-name "~/anaconda3"))
+  :config
+  (conda-env-initialize-interactive-shells)
+  (conda-env-initialize-eshell)
+  (conda-env-autoactivate-mode t)
+)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (conda use-package-ensure-system-package quelpa-use-package org-plus-contrib org-bullets diminish anaconda-mode))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
