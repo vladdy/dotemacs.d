@@ -120,6 +120,17 @@
 
 * Coding
 
+** Markdown
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (use-package markdown-mode
+    :ensure t
+    :mode (("README\\.md\\'" . gfm-mode)
+	   ("\\.md\\'" . markdown-mode)
+	   ("\\.markdown\\'" . markdown-mode))
+    :init (setq markdown-command "/usr/local/bin/multimarkdown"))
+#+END_SRC
+
 ** Python
 
 #+BEGIN_SRC emacs-lisp :tangle yes

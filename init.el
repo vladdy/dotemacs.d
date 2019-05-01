@@ -92,6 +92,13 @@
 (ido-mode t)
 (setq ido-enable-flex-matching t)
 
+(use-package markdown-mode
+  :ensure t
+  :mode (("README\\.md\\'" . gfm-mode)
+	 ("\\.md\\'" . markdown-mode)
+	 ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "/usr/local/bin/multimarkdown"))
+
 (use-package anaconda-mode
   :config
   (add-hook 'python-mode-hook 'anaconda-mode)
