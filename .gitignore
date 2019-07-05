@@ -1,7 +1,12 @@
 # -*-	mode: conf; -*-
+# GNU Emacs
+*.elc
+*~
+elpa/
+
+# Third-party packages
 anaconda-mode
 auto-save-list
 elpa
 ido.last
 tramp
-*~
