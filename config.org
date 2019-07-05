@@ -98,7 +98,7 @@
 	;;  (jiralib-url "http://jira:8080"))
 
 	(global-set-key (kbd "C-c i") 
-	(lambda() (interactive)(org-babel-load-file "~/.emacs.d/init.org")))
+	(lambda() (interactive)(org-babel-load-file "~/.emacs.d/config.org")))
   #+END_SRC
 
 
