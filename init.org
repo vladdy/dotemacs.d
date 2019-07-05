@@ -163,9 +163,10 @@ Within Emacs, list all packages `M-x list-packages`. It will refresh the repos.
 Pres `U` to mark all upgradable packages to be upgrade. Then press `x` to perform
 the upgrade.
 
-* Other configs/examples to process
+* Based on
 ** https://github.com/angrybacon/dotemacs
 ** http://pages.sachachua.com/.emacs.d/Sacha.html
 ** http://mescal.imag.fr/membres/arnaud.legrand/misc/init.php
 ** https://github.com/larstvei/dot-emacs
 ** https://jamiecollinson.com/blog/my-emacs-config/
+** https://github.com/rememberYou/.emacs.d/
