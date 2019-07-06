@@ -1,7 +1,9 @@
-<p align="center"><a href="emacs.html"><img src="https://www.gnu.org/software/emacs/images/emacs.png" alt="Emacs"/><b>GNU Emacs</b></a></p>
 <p align="center">
+	<a href="https://www.gnu.org/software/emacs/"><img src="https://www.gnu.org/software/emacs/images/emacs.png" alt="Emacs"/>
+	<a href="https://www.gnu.org/software/emacs/"><b>GNU Emacs</b></a>
 	<a href="https://www.gnu.org/software/emacs/"><img src="https://img.shields.io/badge/GNU%20Emacs-26.2-b48ead.svg?style=flat-square"/></a>
 </p>
+<p align="center">This repository contains all my GNU Emacs configuration.</p>
 
 ---
 
