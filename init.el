@@ -89,7 +89,8 @@
   (menu-bar-mode -1)              ; Disable the menu bar
   (scroll-bar-mode -1)            ; Disable the scroll bar
   (tool-bar-mode -1)              ; Disable the tool bar
-  (tooltip-mode -1))              ; Disable the tooltips
+  (tooltip-mode -1)              ; Disable the tooltips
+  (set-frame-size (selected-frame) 160 80))
 
 ;;(use-package use-package-secrets
 ;;  :ensure nil
