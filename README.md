@@ -3,7 +3,7 @@
 <p align="center">
 	<a href="https://www.gnu.org/software/emacs/"><img src="https://img.shields.io/badge/GNU%20Emacs-26.2-b48ead.svg?style=flat-square"/></a>
 </p>
-<p align="center">*This repository contains all my GNU Emacs configuration.*</p>
+<p align="center"><i>This repository contains all my GNU Emacs configuration.</i></p>
 
 ---
 
