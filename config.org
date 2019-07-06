@@ -1,4 +1,59 @@
-: Emacs Config
+#+AUTHOR: Vlad Artamonov
+#+TITLE: GNU Emacs Configuration
+
+
+* About
+
+* Start Up
+
+** Better defaults
+
+For a better user experience of GNU Emacs, here are the default values I use.
+
+#+begin_src emacs-lisp :tangle yes
+  (setq-default
+   ad-redefinition-action 'accept                   ; Silence warnings for redefinition
+   cursor-in-non-selected-windows t                 ; Hide the cursor in inactive windows
+   display-time-default-load-average nil            ; Don't display load average
+   fill-column 80                                   ; Set width for automatic line breaks
+   help-window-select t                             ; Focus new help windows when opened
+   indent-tabs-mode nil                             ; Prefers spaces over tabs
+   inhibit-startup-screen t                         ; Disable start-up screen
+   initial-scratch-message ""                       ; Empty the initial *scratch* buffer
+   kill-ring-max 128                                ; Maximum length of kill ring
+   load-prefer-newer t                              ; Prefers the newest version of a file
+   mark-ring-max 128                                ; Maximum length of mark ring
+   scroll-conservatively most-positive-fixnum       ; Always scroll by one line
+   select-enable-clipboard t                        ; Merge system's and Emacs' clipboard
+   tab-width 4                                      ; Set width for tabs
+   use-package-always-ensure t                      ; Avoid the :ensure keyword for each package
+   user-full-name "Vlad Artamonov"                  ; Set the full name of the current user
+   user-mail-address "perestrelka@gmail.com"        ; Set the email address of the current user
+   vc-follow-symlinks t                             ; Always follow the symlinks
+   view-read-only t)                                ; Always open read-only buffers in view-mode
+  (cd "~/")                                         ; Move to the user directory
+  (column-number-mode 1)                            ; Show the column number
+  (display-time-mode 1)                             ; Enable time in the mode-line
+  (fset 'yes-or-no-p 'y-or-n-p)                     ; Replace yes/no prompts with y/n
+  (global-hl-line-mode)                             ; Hightlight current line
+  (set-default-coding-systems 'utf-8)               ; Default to utf-8 encoding
+  (show-paren-mode 1)                               ; Show the parent
+#+end_src
+
+** Fonts
+
+Spending most of our time on GNU Emacs, it is important to use a font that will
+make our reading easier.
+
+Source Code Pro is one of the best monospaced font. Installed it with your
+system manager.
+
+
+#+begin_src emacs-lisp :tangle yes
+  (set-face-attribute 'default nil :font "Source Code Pro")
+  (set-fontset-font t 'latin "Noto Sans")
+#+end_src
+
 
 * Package system Initialization
    #+BEGIN_SRC emacs-lisp :tangle yes
@@ -57,6 +112,62 @@
      ;;  (use-package-secrets :repo "a13/use-package-secrets" :fetcher github :version original))
 
    #+END_SRC
+
+
+* More of Start Up
+
+** Icons
+
+To integrate icons with =doom-modeline=, =switch-to-buffer=, =counsel-find-file=
+and many other functions; [[https://github.com/domtronn/all-the-icons.el/][all-the-icons]] is just the best package that you can
+find.
+
+*NOTE:* if it's the first time that you install the package, you must run
+=M-x all-the-icons-install-fonts=.
+
+#+begin_src emacs-lisp :tangle yes
+  (use-package all-the-icons :defer 0.5)
+#+end_src
+
+
+** Theme
+
+I'm a big fan of [[https://github.com/arcticicestudio/nord-emacs][nord-theme]] and combined with [[https://github.com/seagle0128/doom-modeline][doom-modeline]], it's just
+happiness.
+
+*NOTE:* to be able to see icons in the =doom-modeline=, you will need to install
+[[#Icons][all-the-icons]].
+
+#+begin_src emacs-lisp :tangle yes
+  (use-package nord-theme
+    :config
+    (add-to-list 'custom-theme-load-path (expand-file-name "~/.emacs.d/themes/"))
+    (load-theme 'nord t))
+
+  (use-package doom-modeline
+    :defer 0.1
+    :config (doom-modeline-mode))
+
+  (use-package fancy-battery
+    :after doom-modeline
+    :hook (after-init . fancy-battery-mode))
+#+end_src
+
+
+** Turn off mouse interface
+
+Since I never use the mouse with GNU Emacs, I prefer not to use certain
+graphical elements as seen as the menu bar, toolbar, scrollbar and tooltip that
+I find invasive.
+
+#+begin_src emacs-lisp :tangle yes
+  (when window-system
+    (menu-bar-mode -1)              ; Disable the menu bar
+    (scroll-bar-mode -1)            ; Disable the scroll bar
+    (tool-bar-mode -1)              ; Disable the tool bar
+    (tooltip-mode -1))              ; Disable the tooltips
+#+end_src
+
 
 * Org
   #+BEGIN_SRC emacs-lisp :tangle yes
@@ -150,6 +261,59 @@
     (conda-env-autoactivate-mode t)
   )
 #+END_SRC
+
+
+** Ending Up
+I'm using an =.org= file to maintain my GNU Emacs configuration. However, at his
+launch, it will load the =config.el= source file for a faster loading.
+
+The code below, executes =org-babel-tangle= asynchronously when
+=config.org= is saved.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (use-package async :ensure t)
+
+  (defvar *config-file* (expand-file-name "config.org" user-emacs-directory)
+    "The configuration file.")
+
+  (defvar *config-last-change* (nth 5 (file-attributes *config-file*))
+    "Last modification time of the configuration file.")
+
+  (defvar *show-async-tangle-results* nil
+    "Keeps *emacs* async buffers around for later inspection.")
+
+  (defun my/config-updated ()
+    "Checks if the configuration file has been updated since the last time."
+    (time-less-p *config-last-change*
+                 (nth 5 (file-attributes *config-file*))))
+
+  (defun my/config-tangle ()
+    "Tangles the org file asynchronously."
+    (when (my/config-updated)
+      (setq *config-last-change*
+            (nth 5 (file-attributes *config-file*)))
+      (my/async-babel-tangle *config-file*)))
+
+  (defun my/async-babel-tangle (org-file)
+    "Tangles the org file asynchronously."
+    (let ((init-tangle-start-time (current-time))
+          (file (buffer-file-name))
+          (async-quiet-switch "-q"))
+      (async-start
+       `(lambda ()
+          (require 'org)
+          (org-babel-tangle-file ,org-file))
+       (unless *show-async-tangle-results*
+         `(lambda (result)
+            (if result
+                (message "SUCCESS: %s successfully tangled (%.2fs)."
+                         ,org-file
+                         (float-time (time-subtract (current-time)
+                                                    ',init-tangle-start-time)))
+              (message "ERROR: %s as tangle failed." ,org-file)))))))
+
+#+END_SRC
+
 
 * Instuctions
 ** Regenerate and load config
