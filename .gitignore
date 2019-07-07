@@ -3,6 +3,7 @@
 *.elc
 *~
 elpa/
+config.el
 
 # Third-party packages
 anaconda-mode
