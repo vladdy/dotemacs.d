@@ -6,8 +6,9 @@ elpa/
 config.el
 
 # Third-party packages
-anaconda-mode
-auto-save-list
-elpa
+anaconda-mode/
+auto-save-list/
+elpa/
+transient/
 ido.last
 tramp
