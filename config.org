@@ -272,6 +272,29 @@ made by previous commits.
     :delight)
 #+end_src
 
+** Nix
+
+#+begin_src emacs-lisp :tangle yes
+  (use-package nix-mode
+    :defer 1
+    :mode ("\\.nix\\'" "\\.nix.in\\'"))
+
+  (use-package nix-drv-mode
+    :defer 1
+    :ensure nix-mode
+    :mode "\\.drv\\'")
+
+  (use-package nix-shell
+    :defer 1
+    :ensure nix-mode
+    :commands (nix-shell-unpack nix-shell-configure nix-shell-build))
+
+  (use-package nix-repl
+    :defer 1
+    :ensure nix-mode
+    :commands (nix-repl))
+#+end_src
+
 * Org
   #+BEGIN_SRC emacs-lisp :tangle yes
 	(use-package calendar
