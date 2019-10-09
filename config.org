@@ -11,33 +11,37 @@
 For a better user experience of GNU Emacs, here are the default values I use.
 
 #+begin_src emacs-lisp :tangle yes
-  (setq-default
-   ad-redefinition-action 'accept                   ; Silence warnings for redefinition
-   cursor-in-non-selected-windows t                 ; Hide the cursor in inactive windows
-   display-time-default-load-average nil            ; Don't display load average
-   fill-column 80                                   ; Set width for automatic line breaks
-   help-window-select t                             ; Focus new help windows when opened
-   indent-tabs-mode nil                             ; Prefers spaces over tabs
-   inhibit-startup-screen t                         ; Disable start-up screen
-   initial-scratch-message ""                       ; Empty the initial *scratch* buffer
-   kill-ring-max 128                                ; Maximum length of kill ring
-   load-prefer-newer t                              ; Prefers the newest version of a file
-   mark-ring-max 128                                ; Maximum length of mark ring
-   scroll-conservatively most-positive-fixnum       ; Always scroll by one line
-   select-enable-clipboard t                        ; Merge system's and Emacs' clipboard
-   tab-width 4                                      ; Set width for tabs
-   use-package-always-ensure t                      ; Avoid the :ensure keyword for each package
-   user-full-name "Vlad Artamonov"                  ; Set the full name of the current user
-   user-mail-address "perestrelka@gmail.com"        ; Set the email address of the current user
-   vc-follow-symlinks t                             ; Always follow the symlinks
-   view-read-only t)                                ; Always open read-only buffers in view-mode
-  (cd "~/")                                         ; Move to the user directory
-  (column-number-mode 1)                            ; Show the column number
-  (display-time-mode 1)                             ; Enable time in the mode-line
-  (fset 'yes-or-no-p 'y-or-n-p)                     ; Replace yes/no prompts with y/n
-  (global-hl-line-mode)                             ; Hightlight current line
-  (set-default-coding-systems 'utf-8)               ; Default to utf-8 encoding
-  (show-paren-mode 1)                               ; Show the parent
+      (setq-default
+       ad-redefinition-action 'accept                   ; Silence warnings for redefinition
+       cursor-in-non-selected-windows t                 ; Hide the cursor in inactive windows
+       display-time-default-load-average nil            ; Don't display load average
+       fill-column 80                                   ; Set width for automatic line breaks
+       help-window-select t                             ; Focus new help windows when opened
+       indent-tabs-mode nil                             ; Prefers spaces over tabs
+       inhibit-startup-screen t                         ; Disable start-up screen
+       initial-scratch-message ""                       ; Empty the initial *scratch* buffer
+       kill-ring-max 128                                ; Maximum length of kill ring
+       load-prefer-newer t                              ; Prefers the newest version of a file
+       mark-ring-max 128                                ; Maximum length of mark ring
+       scroll-conservatively most-positive-fixnum       ; Always scroll by one line
+       select-enable-clipboard t                        ; Merge system's and Emacs' clipboard
+       tab-width 4                                      ; Set width for tabs
+       use-package-always-ensure t                      ; Avoid the :ensure keyword for each package
+       user-full-name "Vlad Artamonov"                  ; Set the full name of the current user
+       user-mail-address "perestrelka@gmail.com"        ; Set the email address of the current user
+       vc-follow-symlinks t                             ; Always follow the symlinks
+       view-read-only t)                                ; Always open read-only buffers in view-mode
+      (cd "~/")                                         ; Move to the user directory
+      (column-number-mode 1)                            ; Show the column number
+      (display-time-mode 1)                             ; Enable time in the mode-line
+      (fset 'yes-or-no-p 'y-or-n-p)                     ; Replace yes/no prompts with y/n
+      (global-hl-line-mode)                             ; Hightlight current line
+      (set-default-coding-systems 'utf-8)               ; Default to utf-8 encoding
+      (show-paren-mode 1)                               ; Show the parent
+
+      (when (file-directory-p "/run/current-system/sw/bin")
+        (add-to-list 'exec-path "/run/current-system/sw/bin")
+        (setenv "PATH" (concat (getenv "PATH") ":/run/current-system/sw/bin")))
 #+end_src
 
 ** Fonts
@@ -354,6 +358,13 @@ made by previous commits.
   (setq ido-enable-flex-matching t)
 #+END_SRC
 
+** Direnv
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (use-package direnv
+   :config
+   (direnv-mode))
+#+END_SRC
 
 * Coding
 
