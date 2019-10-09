@@ -175,6 +175,21 @@ I find invasive.
 
 
 * Languages
+** Go
+
+#+begin_src emacs-lisp :tangle yes
+(use-package go-mode
+  :mode "\\.go\\'"
+  :bind (:map go-mode-map
+         ("C-c C-n" . go-run)
+         ("C-c ."   . go-test-current-test)
+         ("C-c f"   . go-test-current-file))
+  :config
+  (add-hook 'before-save-hook #'gofmt-before-save)
+  (use-package gotest)
+  (use-package go-tag
+    :config (setq go-tag-args (list "-transform" "camelcase"))))
+#+end_src
 
 ** Markdown
 
@@ -220,6 +235,14 @@ operating system.
 #+end_src
 
 * Tools
+** Syntax checking
+
+#+begin_src emacs-lisp :tangle yes
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
+#+end_src
+
 
 ** Version Control
 
