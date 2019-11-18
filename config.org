@@ -322,6 +322,12 @@ made by previous commits.
     :commands (nix-repl))
 #+end_src
 
+** Terraform
+
+#+begin_src emacs-lisp :tangle yes
+  (use-package terraform-mode :defer 1)
+#+end_src
+
 * Org
   #+BEGIN_SRC emacs-lisp :tangle yes
 	(use-package calendar
