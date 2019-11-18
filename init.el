@@ -28,7 +28,7 @@
  ;; If there is more than one, they won't work right.
  '(calendar-week-start-day 1)
  '(git-commit-summary-max-length 50)
- '(markdown-command "/usr/local/bin/pandoc")
+ '(markdown-command "/usr/local/bin/pandoc" t)
  '(markdown-preview-javascript
    (quote
     ("https://github.com/highlightjs/highlight.js/9.15.6/highlight.min.js" "<script>
@@ -51,7 +51,7 @@
 
             @media (max-width: 767px) { .markdown-body { padding: 15px; } }
           </style>")) t)
- '(org-bullets-bullet-list (quote ("•")))
+ '(org-bullets-bullet-list (quote ("•")) t)
  '(org-ellipsis "…")
  '(org-src-tab-acts-natively t)
  '(package-selected-packages
