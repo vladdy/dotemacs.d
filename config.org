@@ -63,7 +63,7 @@ system manager.
    #+BEGIN_SRC emacs-lisp :tangle yes
      (require 'package)
      (setq package-archives
-           `(,@package-archives
+           `(("gnu" . "http://elpa.gnu.org/packages/")
              ("melpa" . "https://melpa.org/packages/")
              ;; ("marmalade" . "https://marmalade-repo.org/packages/")
              ("org" . "https://orgmode.org/elpa/")
