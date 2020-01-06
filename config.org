@@ -191,6 +191,32 @@ I find invasive.
     :config (setq go-tag-args (list "-transform" "camelcase"))))
 #+end_src
 
+** Ocaml
+
+#+begin_src emacs-lisp :tangle yes
+      (use-package tuareg
+        :defer t
+        :init
+        (autoload 'utop "utop" "Toplevel for OCaml" t)
+        (autoload 'utop-minor-mode "utop" "Minor mode for utop" t)
+        :config
+        (progn (add-hook 'tuareg-mode-hook 'utop-minor-mode)
+               (setq utop-command "/usr/local/bin/opam config exec -- utop -emacs"))
+  )
+    ;;(use-package ob-ocaml
+    ;;  :defer t
+    ;;  :commands (org-babel-execute:ocaml)
+    ;;  :config
+    ;;  (add-to-list 'org-babel-load-languages '(ocaml . t))
+    ;;  (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages)
+    ;;  (add-to-list 'org-babel-tangle-lang-exts '("ocaml" . "ml")))
+
+    (use-package utop
+      :ensure t
+      :defer t)
+
+#+end_src
+
 ** Markdown
 
 Before you can use this package, make sure you install =pandoc= on your
