@@ -28,19 +28,17 @@
  ;; If there is more than one, they won't work right.
  '(calendar-week-start-day 1)
  '(git-commit-summary-max-length 50)
- '(markdown-command "/usr/local/bin/pandoc" t)
+ '(markdown-command "/usr/local/bin/pandoc")
  '(markdown-preview-javascript
-   (quote
-    ("https://github.com/highlightjs/highlight.js/9.15.6/highlight.min.js" "<script>
+   '("https://github.com/highlightjs/highlight.js/9.15.6/highlight.min.js" "<script>
             $(document).on('mdContentChange', function() {
               $('pre code').each(function(i, block)  {
                 hljs.highlightBlock(block);
               });
             });
-          </script>")) t)
+          </script>") t)
  '(markdown-preview-stylesheets
-   (quote
-    ("https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css" "https://github.com/highlightjs/highlight.js/9.15.6/styles/github.min.css" "<style>
+   '("https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css" "https://github.com/highlightjs/highlight.js/9.15.6/styles/github.min.css" "<style>
             .markdown-body {
               box-sizing: border-box;
               min-width: 200px;
@@ -50,13 +48,12 @@
             }
 
             @media (max-width: 767px) { .markdown-body { padding: 15px; } }
-          </style>")) t)
- '(org-bullets-bullet-list (quote ("•")) t)
+          </style>") t)
+ '(org-bullets-bullet-list '("•") t)
  '(org-ellipsis "…")
  '(org-src-tab-acts-natively t)
  '(package-selected-packages
-   (quote
-    (direnv use-package-ensure-system-package quelpa-use-package org-plus-contrib org-bullets nord-theme nix-mode markdown-preview-mode magit git-timemachine git-gutter fancy-battery doom-modeline diminish conda anaconda-mode)))
+   '(go-tag gotest direnv use-package-ensure-system-package quelpa-use-package org-plus-contrib org-bullets nord-theme nix-mode markdown-preview-mode magit git-timemachine git-gutter fancy-battery doom-modeline diminish conda anaconda-mode))
  '(system-packages-noconfirm t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
